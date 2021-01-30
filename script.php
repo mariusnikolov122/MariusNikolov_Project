@@ -27,29 +27,36 @@ $arr_count = count($stringArray) - 1;
 
 //Резултата го приравнявам на 0, защото ако няма елементи в масива няма да се изпълнява и кода, тоест 0 = празен масив
 
+$result = 0;
+
 //С функцията substr връщам част от стринг, тоест тук минаваме през всички стрингове
 
 for ($i=0; $i < $arr_count ; $i++) { 
-	$first = substr($stringArray[$i+1], 0, 1);
-	$last = subst($stringArray[$i], -1);
+	$first = substr($stringArray[$i + 1], 0, 1);
+	$last = substr($stringArray[$i], -1);
 
 	if (($i + 2) <= $arr_count) {
 		$next_first = substr($stringArray[$i + 2], 0, 1);
-		$next_first = substr($stringArray[$i + 1], -1);
+		$next_last = substr($stringArray[$i + 1], -1);
 	}
 
 //Започвам да сравнявам стринговете или по-точно буквите на стринговете. Използвам функцията substr_replace, за да заменя част от един стринг с друг стринг. С функцията strlen проверявам дължината на дадения стринг
 
-if ($first != $last && $next_first == $next_last) {
+if ($first != $last && $next_last != $next_first) {
  	$stringArray[$i + 1] = substr_replace($stringArray[$i + 1], $last, 0, 1);
  	$result++;
+
 } elseif ($first != $last && $next_last == $next_first) {
+
 	if (strlen($stringArray[$i + 1]) == 1) {
 		$stringArray[$i] = substr_replace($stringArray[$i], $next_last, -1);
+
 	} elseif (strlen($stringArray[$i + 1]) >= 2) {
-		$stringArray[$i + 1] = substr_replace($stringArray, $last, 0, 1)
+		$stringArray[$i + 1] = substr_replace($stringArray[$i + 1], $last, 0 , 1);
 		}
-	$result++;
+
+		$result++;
+
 	}	 
 }
 
@@ -60,3 +67,7 @@ foreach ($stringArray as $value) {
 }
 
 echo "<br>";
+
+?>
+
+<a href="example.php">Back</a>
