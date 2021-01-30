@@ -29,7 +29,7 @@ foreach ($array as $value) {
 
 	?>
 
-	<form action="" method="post">
+	<form action="script.php" method="post">
 		<input type="submit" name="submit" value="Check">
 	</form>
 
